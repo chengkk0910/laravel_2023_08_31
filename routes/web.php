@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,15 +56,26 @@ Route::get('/mm3', function () {
 })->name('helloF3');;
 
 
+
+
 Route::get('/calculate', function () {
     $option = ['+', '-', '*', '/'];
-    $getOption = $option[rand(0, 3)];
+    $getOption = session('getOption');
+    if (empty($getOption)) {
+        $getOption = 0;
+    }
+
+    if ($getOption > 3) {
+        $getOption = 0;
+    }
+
 
     $data = [
         'num1' => 100,
         'num2' => 2000,
-        'option' => $getOption
+        'option' => $option[$getOption]
     ];
+    session()->put('getOption', $getOption + 1);
 
     return view('front.calculate')->with('data', $data);
 })->name('calculate');
@@ -91,5 +103,5 @@ Route::get('/table', function () {
         ]
     ];
 
-    return view('front.table')->with('data',$data);
+    return view('front.table')->with('data', $data);
 })->name('table');
