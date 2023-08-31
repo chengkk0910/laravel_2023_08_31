@@ -1,0 +1,69 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', function () {
+    // $url = route('route.name');
+    // $url = route('helloF1');
+    // $test = 123;
+    // dd($url);
+
+    // $url = asset('css/style.css');
+    // dd($url);
+
+    $data = [
+        's1' => 'amy',
+        's2' => 'bob',
+        's3' => 'cat'
+    ];
+
+
+    // return view('front.hall',['data123'=> $data]);
+    return view('front.hall')->with('data123', $data);
+});
+
+Route::get('/other1', function () {
+    return view('front.f1');
+})->name('helloF1');
+
+Route::get('/xxx2', function () {
+    return view('front.f2');
+})->name('helloF2');;
+
+Route::get('/mm3', function () {
+    return view('front.f3');
+})->name('helloF3');;
+
+
+Route::get('/mm3', function () {
+    return view('front.f3');
+})->name('helloF3');;
+
+
+Route::get('/calculate', function () {
+    $option = ['+','-','*','/'];
+    $getOption = $option[rand(0,3)];
+
+    $data = [
+        'num1' => 100,
+        'num2' => 2000,
+        'option' => $getOption
+    ];
+
+    return view('front.calculate')->with('data',$data);
+})->name('calculate');
