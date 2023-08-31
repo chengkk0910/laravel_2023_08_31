@@ -56,8 +56,8 @@ Route::get('/mm3', function () {
 
 
 Route::get('/calculate', function () {
-    $option = ['+','-','*','/'];
-    $getOption = $option[rand(0,3)];
+    $option = ['+', '-', '*', '/'];
+    $getOption = $option[rand(0, 3)];
 
     $data = [
         'num1' => 100,
@@ -65,5 +65,31 @@ Route::get('/calculate', function () {
         'option' => $getOption
     ];
 
-    return view('front.calculate')->with('data',$data);
+    return view('front.calculate')->with('data', $data);
 })->name('calculate');
+
+
+Route::get('/table', function () {
+    $data = [
+        [
+            'id' => 1,
+            'name' => 'amy',
+            'mobile' => '0911-111-111'
+
+        ],
+        [
+            'id' => 2,
+            'name' => 'bob',
+            'mobile' => '0922-222-222'
+
+        ],
+        [
+            'id' => 3,
+            'name' => 'cat',
+            'mobile' => '0933-333-333'
+
+        ]
+    ];
+
+    return view('front.table')->with('data',$data);
+})->name('table');
